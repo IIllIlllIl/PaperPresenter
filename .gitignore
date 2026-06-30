@@ -49,6 +49,7 @@ outputs/slides/*.pdf
 outputs/slides/*.pptx
 
 # Intermediate artifacts (always ignored)
+outputs/lite/
 outputs/intermediates/images/*.png
 outputs/intermediates/images/citations/*.png
 outputs/intermediates/markdown/*.md
