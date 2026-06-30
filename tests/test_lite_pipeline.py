@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 
 from src.lite.models import PaperMetadata, RenderedPage
 from src.lite.pipeline import LitePipeline
@@ -40,3 +41,21 @@ def test_lite_pipeline_writes_harness_manifest(tmp_path: Path):
     assert Path(result["plan"]).exists()
     assert Path(result["pptx"]).exists()
     assert "FullPageFallbackInventory" in manifest.read_text(encoding="utf-8")
+
+
+def test_lite_pipeline_manifest_records_artifact_paths(tmp_path: Path):
+    pdf_path = tmp_path / "paper.pdf"
+    pdf_path.write_bytes(b"%PDF-1.4")
+
+    result = LitePipeline(pdf_reader=FakePDFReader(), writer=FakeWriter()).run(
+        pdf_path,
+        output_dir=tmp_path / "out",
+    )
+
+    manifest = json.loads(Path(result["manifest"]).read_text(encoding="utf-8"))
+    assert manifest["source_pdf"] == str(pdf_path)
+    assert manifest["providers"]["pdf_reader"] == "FakePDFReader"
+    assert manifest["providers"]["visual_inventory"] == "FullPageFallbackInventory"
+    assert manifest["artifacts"]["deck_spec"] == result["plan"]
+    assert manifest["artifacts"]["pptx"] == result["pptx"]
+    assert manifest["artifacts"]["rendered_pages"][0]["page_num"] == 1
