@@ -20,5 +20,8 @@ development should treat this folder as the product and architecture baseline.
   acceptance criteria.
 - [Harness Design](harness_design.md): boundary between the thin harness and
   Codex/GPT model capability.
+- [Cross-Platform Policy](cross_platform_policy.md): keep Lite portable and
+  pure Python-first.
+- [Test Strategy](test_strategy.md): staged benchmark plan for selected PDFs.
 - [Reuse Inventory](reuse_inventory.md): what to keep, adapt, freeze, or remove
   from the current codebase.
