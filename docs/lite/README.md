@@ -18,5 +18,7 @@ development should treat this folder as the product and architecture baseline.
 
 - [Requirements](requirements.md): target behavior, scope, non-goals, and
   acceptance criteria.
+- [Harness Design](harness_design.md): boundary between the thin harness and
+  Codex/GPT model capability.
 - [Reuse Inventory](reuse_inventory.md): what to keep, adapt, freeze, or remove
   from the current codebase.

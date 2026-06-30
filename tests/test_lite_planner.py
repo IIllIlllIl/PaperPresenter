@@ -1,5 +1,9 @@
 from src.lite.models import PaperMetadata, VisualAsset
-from src.lite.planner import LitePlanner
+from src.lite.planner import DeckPlanner, LitePlanner
+
+
+def _assert_planner_contract(planner: DeckPlanner) -> DeckPlanner:
+    return planner
 
 
 def test_lite_planner_produces_reviewable_deck():
@@ -12,7 +16,8 @@ def test_lite_planner_produces_reviewable_deck():
         )
     ]
 
-    deck = LitePlanner().plan(
+    planner = _assert_planner_contract(LitePlanner())
+    deck = planner.plan(
         metadata=PaperMetadata(title="A Paper", page_count=8),
         paper_text="This paper proposes a method and evaluates results.",
         visuals=visuals,
@@ -22,4 +27,3 @@ def test_lite_planner_produces_reviewable_deck():
     assert deck.slides[0].title == "A Paper"
     assert "page_001" in deck.visual_map()
     assert any(slide.title == "Limitations" for slide in deck.slides)
-

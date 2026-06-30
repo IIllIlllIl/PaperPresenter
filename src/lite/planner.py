@@ -1,14 +1,31 @@
-"""Initial deterministic planner for PaperPresenter Lite."""
+"""Deck planning provider interfaces and fallback planner."""
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Protocol
 
 from src.lite.models import DeckSpec, PaperAnalysis, PaperMetadata, SlideSpec, VisualAsset
 
 
+class DeckPlanner(Protocol):
+    """Provider boundary for model-backed deck planning."""
+
+    def plan(
+        self,
+        metadata: PaperMetadata,
+        paper_text: str,
+        visuals: List[VisualAsset],
+    ) -> DeckSpec:
+        """Return a complete deck specification."""
+
+
 class LitePlanner:
-    """Create a reviewable initial deck plan."""
+    """
+    Deterministic fallback planner.
+
+    This is a harness placeholder, not the long-term intelligence layer. A
+    Codex/GPT-backed DeckPlanner should replace it for real use.
+    """
 
     def plan(
         self,
@@ -141,4 +158,3 @@ class LitePlanner:
                 "How could this inform our own work?",
             ],
         )
-

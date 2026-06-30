@@ -18,10 +18,10 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> None:
     args = build_parser().parse_args()
     result = LitePipeline().run(args.pdf, args.output_dir)
+    print(f"Manifest: {result['manifest']}")
     print(f"Plan: {result['plan']}")
     print(f"PPTX: {result['pptx']}")
 
 
 if __name__ == "__main__":
     main()
-

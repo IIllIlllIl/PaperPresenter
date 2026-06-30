@@ -2,11 +2,16 @@
 
 ## Objective
 
-Build a lightweight tool that takes one academic paper PDF and produces a
+Build a lightweight harness that takes one academic paper PDF and produces a
 presentation suitable for a PhD/postdoc group meeting.
 
-The new system should prioritize faithful visual use, clear research narrative,
-and simple maintainability over broad workflow automation.
+The project should not become a paper-understanding engine. It should rely on
+Codex/GPT model capability for visual understanding, narrative planning, and
+slide judgment, so model improvements automatically improve output quality.
+
+The codebase should prioritize stable inputs, structured outputs, reviewable
+intermediate artifacts, and deterministic rendering over broad workflow
+automation.
 
 ## Primary User
 
@@ -21,6 +26,8 @@ than only high-level summary.
 
 The tool should generate:
 
+1. A harness manifest that records all model-facing inputs and generated
+   artifacts.
 1. A reviewable slide plan in JSON or Markdown.
 2. Extracted or rendered visual assets used by the deck.
 3. A PowerPoint deck.
@@ -82,7 +89,7 @@ box heuristics as the primary visual extraction strategy.
    - Store page images in a run-specific asset directory.
 
 3. Vision inventory
-   - Ask GPT-5 vision to inspect page images.
+   - Ask Codex/GPT vision to inspect page images.
    - Return a structured inventory of figures, tables, diagrams, equations, and
      result-heavy regions.
    - Include page number, approximate bounding box, caption, importance, and
@@ -108,6 +115,19 @@ box heuristics as the primary visual extraction strategy.
 
 8. Review loop
    - Allow the user to edit the slide plan before final deck generation.
+
+## Harness Principles
+
+The implementation should stay thin:
+
+- The harness prepares inputs; the model makes semantic decisions.
+- The harness validates schemas; the model writes the content.
+- The harness renders deterministic artifacts; the model chooses structure and
+  visuals.
+- The harness records uncertainty; it should not hide uncertainty with brittle
+  heuristics.
+- Fallback logic is allowed only to keep the workflow runnable, and must be
+  clearly labeled as fallback output.
 
 ## Data Contracts
 
@@ -157,3 +177,4 @@ For a small benchmark set of 3-5 papers:
 - Keep intermediate artifacts by default during development.
 - Add tests around schemas, asset paths, and deck generation.
 - Avoid adding heavy dependencies unless they replace meaningful complexity.
+- Keep semantic heuristics minimal and removable.
