@@ -51,6 +51,7 @@ outputs/slides/*.pptx
 # Intermediate artifacts (always ignored)
 outputs/lite/
 outputs/lite_codex_smoke/
+outputs/lite_codex_eval/
 outputs/intermediates/images/*.png
 outputs/intermediates/images/citations/*.png
 outputs/intermediates/markdown/*.md
