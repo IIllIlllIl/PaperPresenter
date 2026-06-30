@@ -35,6 +35,7 @@ env/
 # Environment variables
 .env
 .claude/settings.local.json
+.claude/worktrees/
 
 # Runtime data
 runtime/cache/
