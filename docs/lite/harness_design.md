@@ -3,7 +3,7 @@
 PaperPresenter Lite should be a thin harness around Codex/GPT capability.
 
 The repository should avoid accumulating custom intelligence that competes with
-the model. Instead, it should make model work easier, safer, and more
+the model. Instead, it should make local Codex work easier, safer, and more
 reproducible.
 
 ## Responsibilities
@@ -30,6 +30,16 @@ The model owns:
 ## Provider Boundary
 
 The harness should depend on provider interfaces, not hard-coded model logic.
+
+The primary model entrypoint is the local Codex CLI:
+
+```bash
+codex exec --image <page.png> --output-schema <schema.json> <prompt>
+```
+
+This keeps the project coupled to Codex capability rather than a direct SDK
+implementation. As Codex and the underlying GPT models improve, the harness can
+benefit without rewriting its core.
 
 Initial provider boundaries:
 
@@ -68,4 +78,3 @@ Bad failure:
 - no source page
 - no warning
 - slide looks finished but evidence is wrong
-

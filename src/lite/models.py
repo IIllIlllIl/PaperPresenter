@@ -47,6 +47,22 @@ class RenderedPage:
 
 
 @dataclass
+class VisualAssetDraft:
+    """Model-produced visual asset metadata before image materialization."""
+
+    asset_id: str
+    kind: str
+    source_page: int
+    bbox: BoundingBox = field(default_factory=BoundingBox.full_page)
+    caption: str = ""
+    role: str = ""
+    importance: str = "medium"
+    confidence: float = 0.0
+    extraction_status: str = "model_selected"
+    notes: str = ""
+
+
+@dataclass
 class VisualAsset:
     asset_id: str
     kind: str
@@ -128,4 +144,21 @@ class DeckSpec:
         import json
 
         return cls.from_dict(json.loads(Path(path).read_text(encoding="utf-8")))
+
+
+def visual_asset_draft_from_dict(data: Dict[str, Any]) -> VisualAssetDraft:
+    bbox_data = data.get("bbox")
+    bbox = BoundingBox(**bbox_data) if isinstance(bbox_data, dict) else BoundingBox.full_page()
+    return VisualAssetDraft(
+        asset_id=str(data.get("asset_id", "")),
+        kind=str(data.get("kind", "region")),
+        source_page=int(data.get("source_page", 1)),
+        bbox=bbox,
+        caption=str(data.get("caption", "")),
+        role=str(data.get("role", "")),
+        importance=str(data.get("importance", "medium")),
+        confidence=float(data.get("confidence", 0.0)),
+        extraction_status=str(data.get("extraction_status", "model_selected")),
+        notes=str(data.get("notes", "")),
+    )
 
