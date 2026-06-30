@@ -1,6 +1,6 @@
-# PaperReader Lite Foundation
+# PaperPresenter Lite Foundation
 
-This folder defines the baseline for the next PaperReader development cycle.
+This folder defines the baseline for the next PaperPresenter development cycle.
 
 The goal is to replace the current process-heavy Claude-era pipeline with a
 smaller GPT-5 vision-first workflow:
@@ -20,4 +20,3 @@ development should treat this folder as the product and architecture baseline.
   acceptance criteria.
 - [Reuse Inventory](reuse_inventory.md): what to keep, adapt, freeze, or remove
   from the current codebase.
-

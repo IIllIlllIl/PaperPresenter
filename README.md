@@ -1,8 +1,8 @@
-# PaperReader
+# PaperPresenter
 
 AI-powered academic paper analysis and presentation generation.
 
-PaperReader reads a PDF paper, analyzes its content with Claude, plans a presentation structure, generates slide markdown, exports a PPTX, and can optionally attach citation analysis.
+PaperPresenter reads a PDF paper, analyzes its content, plans a presentation structure, generates slide markdown, exports a PPTX, and can optionally attach citation analysis.
 
 ## Quick Links
 

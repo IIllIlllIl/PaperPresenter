@@ -1,7 +1,7 @@
 # Reuse Inventory
 
 This document records which parts of the current repository should be reused for
-PaperReader Lite.
+PaperPresenter Lite.
 
 ## Keep As Reference
 
@@ -94,6 +94,5 @@ These should be candidates for removal after the Lite baseline is running.
 ## Lite Baseline Decision
 
 The old project should be treated as a source of examples and test material.
-PaperReader Lite should start with a new minimal pipeline rather than refactoring
+PaperPresenter Lite should start with a new minimal pipeline rather than refactoring
 the current pipeline in place.
-

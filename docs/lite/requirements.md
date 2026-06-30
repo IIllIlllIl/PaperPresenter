@@ -1,4 +1,4 @@
-# PaperReader Lite Requirements
+# PaperPresenter Lite Requirements
 
 ## Objective
 
@@ -157,4 +157,3 @@ For a small benchmark set of 3-5 papers:
 - Keep intermediate artifacts by default during development.
 - Add tests around schemas, asset paths, and deck generation.
 - Avoid adding heavy dependencies unless they replace meaningful complexity.
-
