@@ -68,11 +68,12 @@ class LocalCodexRunner:
                 cmd.extend(["--output-schema", str(schema_path)])
             for image in images:
                 cmd.extend(["--image", str(image)])
-            cmd.append(prompt)
+            cmd.append("-")
 
             completed = subprocess.run(
                 cmd,
                 cwd=str(self.cwd),
+                input=prompt,
                 capture_output=True,
                 text=True,
                 timeout=self.timeout_seconds,
@@ -99,4 +100,3 @@ class LocalCodexRunner:
             return json.loads(raw)
         except json.JSONDecodeError as exc:
             raise LocalCodexError(f"Codex returned non-JSON output: {raw[:500]}") from exc
-
